@@ -1,0 +1,42 @@
+============================================================
+           EXPERIMENT CONFIGURATION & METADATA              
+============================================================
+Dataset Name:              APTOS 2019 Blindness Detection
+Number of Classes:         5
+Split Sizes:               Train=2563, Val=549, Test=550 (70/15/15)
+Random Seed:               42
+Image Size:                224 x 224
+Batch Size:                32
+Optimizer:                 AdamW
+Initial Learning Rate:     0.001
+Weight Decay:              0.0001
+Maximum Epochs:            15
+Early Stopping Patience:   3
+Scheduler:                 ReduceLROnPlateau(mode='min', patience=2, factor=0.1)
+Loss Function:             CrossEntropyLoss (Inverse Frequency Weighted)
+GPU Name:                  None
+PyTorch Version:           2.11.0+cpu
+Torchvision Version:       0.26.0+cpu
+
+Model Configurations:
+  - ResNet50 (resnet50):
+      num_classes: 5
+      pretrained: True
+      freeze_backbone: True
+      Checkpoint: /content/drive/MyDrive/DR_project/checkpoints/resnet50_best.pth
+  - EfficientNet-B0 (efficientnet_b0):
+      num_classes: 5
+      pretrained: True
+      freeze_backbone: True
+      Checkpoint: /content/drive/MyDrive/DR_project/checkpoints/efficientnet_b0_best.pth
+  - Dual-Backbone Fusion (efficientnet_densenet_fusion):
+      num_classes: 5
+      pretrained: True
+      freeze_backbones: True
+      Checkpoint: /content/drive/MyDrive/DR_project/checkpoints/fusion_best.pth
+  - CNN + Transformer (cnn_transformer):
+      num_classes: 5
+      pretrained: True
+      freeze_cnn_backbone: True
+      Checkpoint: /content/drive/MyDrive/DR_project/checkpoints/cnn_transformer_best.pth
+============================================================

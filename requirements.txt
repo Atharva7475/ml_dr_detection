@@ -1,0 +1,24 @@
+# Deep Learning Core
+torch
+torchvision
+
+# Data Processing & Numerical Computing
+numpy
+pandas
+scipy
+
+# Machine Learning & Metrics
+scikit-learn
+
+# Image Processing & Augmentation
+Pillow
+opencv-python
+albumentations
+
+# Visualization
+matplotlib
+seaborn
+
+# Utilities & Configuration
+tqdm
+PyYAML

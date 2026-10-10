@@ -1,0 +1,30 @@
+# Large Model Checkpoints (keep on Google Drive)
+checkpoints/
+*.pth
+*.pt
+*.bin
+*.h5
+*.onnx
+
+# Data & Datasets
+data/
+
+# Python Cache & Notebook Checkpoints
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Flutter App Build Artifacts & Local Caches
+retina_ai/build/
+retina_ai/.dart_tool/
+retina_ai/.idea/
+retina_ai/android/.gradle/
+retina_ai/android/app/build/
+retina_ai/ios/Pods/
+retina_ai/ios/.symlinks/
+
+# Zip Archives & Temp Files
+*.zip
+desktop.ini
+.DS_Store
