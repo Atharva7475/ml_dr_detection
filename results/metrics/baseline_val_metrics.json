@@ -1,0 +1,42 @@
+{
+    "model_name": "EfficientNet-B0 (Frozen Backbone Baseline)",
+    "evaluation_split": "val.csv",
+    "num_samples": 549,
+    "total_parameters": 4013953,
+    "trainable_parameters": 6405,
+    "inference_time_seconds": 957.10,
+    "throughput_samples_per_sec": 0.6,
+    "accuracy": 0.7358834244080145,
+    "precision_macro": 0.5582963127265529,
+    "precision_weighted": 0.7423854199692484,
+    "recall_macro": 0.5685117478051794,
+    "recall_weighted": 0.7358834244080145,
+    "f1_macro": 0.5609650478144709,
+    "f1_weighted": 0.7368297492194602,
+    "sensitivity_macro": 0.5685117478051794,
+    "sensitivity_per_class": [
+        0.9520295202952029,
+        0.5272727272727272,
+        0.5866666666666667,
+        0.3448275862068966,
+        0.4318181818181818
+    ],
+    "specificity_macro": 0.9314115160893043,
+    "specificity_per_class": [
+        0.9172661870503597,
+        0.937246963562753,
+        0.9122807017543859,
+        0.9596153846153846,
+        0.9306930693069307
+    ],
+    "quadratic_weighted_kappa": 0.7995171732007253,
+    "roc_auc_macro": 0.9042571253457102,
+    "roc_auc_weighted": 0.9333333333333333,
+    "confusion_matrix": [
+        [258, 8, 4, 1, 0],
+        [12, 29, 9, 1, 4],
+        [10, 18, 88, 12, 22],
+        [0, 0, 10, 10, 9],
+        [1, 5, 12, 7, 19]
+    ]
+}

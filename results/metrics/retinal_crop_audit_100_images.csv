@@ -1,0 +1,101 @@
+id_code,diagnosis,grade_name,split,status,orig_w,orig_h,aspect_ratio,is_cropped,bbox,area_removed_pct,crop_w,crop_h,mean_lum,max_lum,is_excessively_dark,reason
+cd8da43e3069,0,0 - No DR,val,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,62.2,255,False,already_tightly_framed
+7435e9a3e36e,0,0 - No DR,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,59.9,255,False,already_tightly_framed
+11b220a397b8,0,0 - No DR,train,OK,2048,1536,1.33,True,"(312, 70, 1715, 1475)",37.3,1405,1405,43.6,255,False,successful_retinal_crop
+6b66b0e86f7e,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,78.8,255,False,already_tightly_framed
+1e742358e0b9,0,0 - No DR,val,OK,1476,1117,1.32,False,"(0, 0, 1476, 1117)",0.0,1476,1117,83.4,255,False,already_tightly_framed
+2fdfb80ea53c,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,81.9,255,False,already_tightly_framed
+a26f50218b84,0,0 - No DR,train,OK,819,614,1.33,True,"(23, 0, 796, 614)",5.6,773,773,33.5,252,False,successful_retinal_crop
+ceb32a193eff,0,0 - No DR,val,OK,1476,1117,1.32,False,"(0, 0, 1476, 1117)",0.0,1476,1117,86.2,250,False,already_tightly_framed
+6bf26b777e3a,0,0 - No DR,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,35.4,186,False,already_tightly_framed
+01d9477b1171,0,0 - No DR,train,OK,819,614,1.33,True,"(126, 28, 687, 590)",37.3,562,562,37.8,255,False,successful_retinal_crop
+93802d1e3c41,0,0 - No DR,val,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,75.3,255,False,already_tightly_framed
+ea4ce9516144,0,0 - No DR,train,OK,2048,1536,1.33,True,"(311, 69, 1716, 1476)",37.2,1407,1407,51.7,255,False,successful_retinal_crop
+10de500cf0c5,0,0 - No DR,train,OK,2048,1536,1.33,True,"(313, 70, 1717, 1476)",37.2,1406,1406,38.8,255,False,successful_retinal_crop
+b7ce561a7328,0,0 - No DR,val,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,71.0,255,False,already_tightly_framed
+2eba4279e503,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,64.1,255,False,already_tightly_framed
+f2f569a64949,0,0 - No DR,train,OK,2048,1536,1.33,True,"(313, 71, 1715, 1476)",37.4,1405,1405,42.6,255,False,successful_retinal_crop
+62b826899151,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,79.2,255,False,already_tightly_framed
+bb85097857fa,0,0 - No DR,train,OK,2048,1536,1.33,True,"(313, 71, 1716, 1476)",37.3,1405,1405,49.4,255,False,successful_retinal_crop
+52edbe29d655,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,62.8,255,False,already_tightly_framed
+668a319c2d23,0,0 - No DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,70.9,255,False,already_tightly_framed
+b7278b4f2448,1,1 - Mild,train,OK,4288,2848,1.51,True,"(404, 0, 4092, 2763)",16.6,3688,3688,45.1,255,False,successful_retinal_crop
+0dc031c94225,1,1 - Mild,val,OK,2416,1736,1.39,True,"(84, 0, 2385, 1736)",4.8,2301,2301,54.9,255,False,successful_retinal_crop
+a443c4fd489c,1,1 - Mild,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,72.9,255,False,already_tightly_framed
+d85d052900b4,1,1 - Mild,train,OK,2416,1736,1.39,True,"(85, 0, 2386, 1736)",4.8,2301,2301,52.7,255,False,successful_retinal_crop
+c102db7634d8,1,1 - Mild,train,OK,4288,2848,1.51,True,"(407, 0, 4095, 2754)",16.8,3688,3688,66.2,255,False,successful_retinal_crop
+944a233fbf8e,1,1 - Mild,train,OK,2416,1736,1.39,True,"(84, 0, 2386, 1736)",4.7,2302,2302,66.0,255,False,successful_retinal_crop
+4fa26d065ad3,1,1 - Mild,train,OK,2416,1736,1.39,True,"(93, 0, 2395, 1736)",4.7,2302,2302,69.2,255,False,successful_retinal_crop
+523b3f0fc646,1,1 - Mild,val,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,39.9,255,False,already_tightly_framed
+00cb6555d108,1,1 - Mild,val,OK,2416,1736,1.39,True,"(87, 0, 2388, 1736)",4.8,2301,2301,58.0,253,False,successful_retinal_crop
+6028a575dc27,1,1 - Mild,train,OK,2416,1736,1.39,True,"(85, 0, 2387, 1736)",4.7,2302,2302,60.4,255,False,successful_retinal_crop
+19722bff5a09,1,1 - Mild,train,OK,2416,1736,1.39,True,"(93, 0, 2395, 1736)",4.7,2302,2302,82.3,255,False,successful_retinal_crop
+98fbe56dcc2c,1,1 - Mild,train,OK,2416,1736,1.39,True,"(87, 0, 2386, 1736)",4.8,2299,2299,50.3,245,False,successful_retinal_crop
+2a8a9e957a6c,1,1 - Mild,train,OK,2416,1736,1.39,True,"(83, 0, 2384, 1736)",4.8,2301,2301,56.6,231,False,successful_retinal_crop
+8bbd7835e9aa,1,1 - Mild,train,OK,2416,1736,1.39,True,"(90, 0, 2392, 1736)",4.7,2302,2302,75.8,255,False,successful_retinal_crop
+22a6da005395,1,1 - Mild,train,OK,2416,1736,1.39,True,"(80, 0, 2382, 1736)",4.7,2302,2302,72.9,255,False,successful_retinal_crop
+2a08ed6bbcbc,1,1 - Mild,train,OK,2416,1736,1.39,True,"(95, 0, 2398, 1736)",4.7,2303,2303,76.1,255,False,successful_retinal_crop
+3dbc90c7ee7d,1,1 - Mild,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,63.3,255,False,already_tightly_framed
+8273fdb4405e,1,1 - Mild,train,OK,2416,1736,1.39,True,"(88, 0, 2390, 1736)",4.7,2302,2302,70.3,255,False,successful_retinal_crop
+25e9fd872182,1,1 - Mild,train,OK,2416,1736,1.39,True,"(92, 0, 2392, 1736)",4.8,2300,2300,56.2,238,False,successful_retinal_crop
+b94c58d063bf,1,1 - Mild,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,48.5,245,False,already_tightly_framed
+3fd7df6099e3,2,2 - Moderate,train,OK,2144,1424,1.51,True,"(215, 0, 2056, 1424)",14.1,1841,1841,41.8,239,False,successful_retinal_crop
+1e4650743fa2,2,2 - Moderate,train,OK,3216,2136,1.51,True,"(325, 0, 3087, 2136)",14.1,2762,2762,69.6,255,False,successful_retinal_crop
+0c7e82daf5a0,2,2 - Moderate,train,OK,1504,1000,1.5,True,"(109, 0, 1393, 1000)",14.6,1284,1284,45.2,255,False,successful_retinal_crop
+af828dab3ffc,2,2 - Moderate,train,OK,3216,2136,1.51,True,"(325, 0, 3088, 2136)",14.1,2763,2763,68.4,236,False,successful_retinal_crop
+1632c4311fc9,2,2 - Moderate,train,OK,2416,1736,1.39,True,"(93, 0, 2395, 1736)",4.7,2302,2302,65.6,255,False,successful_retinal_crop
+04a6fc58dabc,2,2 - Moderate,train,OK,2416,1736,1.39,True,"(79, 0, 2380, 1736)",4.8,2301,2301,51.4,249,False,successful_retinal_crop
+85cc6d636898,2,2 - Moderate,train,OK,2416,1736,1.39,True,"(84, 0, 2386, 1736)",4.7,2302,2302,64.2,255,False,successful_retinal_crop
+fcc55ae641ae,2,2 - Moderate,train,OK,3388,2588,1.31,True,"(172, 0, 3254, 2547)",10.5,3082,3082,74.2,255,False,successful_retinal_crop
+0415fc68b176,2,2 - Moderate,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,47.4,203,False,already_tightly_framed
+cf0824f53dd9,2,2 - Moderate,train,OK,2416,1736,1.39,True,"(90, 0, 2393, 1736)",4.7,2303,2303,73.0,255,False,successful_retinal_crop
+9f436886e056,2,2 - Moderate,val,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,56.9,255,False,already_tightly_framed
+b98f77098b9d,2,2 - Moderate,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,56.2,255,False,already_tightly_framed
+c05b7b4c22fe,2,2 - Moderate,train,OK,3216,2136,1.51,True,"(329, 0, 3089, 2136)",14.2,2760,2760,52.7,211,False,successful_retinal_crop
+18323d8f2470,2,2 - Moderate,train,OK,1844,1226,1.5,True,"(179, 0, 1714, 1226)",16.8,1535,1535,44.2,255,False,successful_retinal_crop
+907aaff827e5,2,2 - Moderate,val,OK,3216,2136,1.51,True,"(328, 0, 3093, 2136)",14.0,2765,2765,61.5,255,False,successful_retinal_crop
+fc4c2d35c6f8,2,2 - Moderate,train,OK,3216,2136,1.51,True,"(326, 0, 3088, 2136)",14.1,2762,2762,55.6,255,False,successful_retinal_crop
+269f0792f11f,2,2 - Moderate,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,71.6,255,False,already_tightly_framed
+d18e5b68f6d2,2,2 - Moderate,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,71.0,255,False,already_tightly_framed
+e12d41e7b221,2,2 - Moderate,train,OK,2416,1736,1.39,True,"(90, 0, 2391, 1736)",4.8,2301,2301,63.3,255,False,successful_retinal_crop
+fd48cf452e9d,2,2 - Moderate,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,59.8,250,False,already_tightly_framed
+a14bbd9a583e,3,3 - Severe,train,OK,2416,1736,1.39,True,"(100, 0, 2401, 1736)",4.8,2301,2301,74.7,255,False,successful_retinal_crop
+c5a9ebef1517,3,3 - Severe,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,57.9,255,False,already_tightly_framed
+6b128e648646,3,3 - Severe,train,OK,3216,2136,1.51,True,"(329, 0, 3092, 2136)",14.1,2763,2763,78.5,255,False,successful_retinal_crop
+4d47300e3ddb,3,3 - Severe,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,49.2,255,False,already_tightly_framed
+910bfd38e2f5,3,3 - Severe,val,OK,3216,2136,1.51,True,"(328, 0, 3090, 2136)",14.1,2762,2762,63.9,255,False,successful_retinal_crop
+1623e8e3adc4,3,3 - Severe,train,OK,3216,2136,1.51,True,"(313, 0, 3084, 2136)",13.8,2771,2771,65.2,255,False,successful_retinal_crop
+042470a92154,3,3 - Severe,train,OK,2416,1736,1.39,True,"(90, 0, 2390, 1736)",4.8,2300,2300,52.9,247,False,successful_retinal_crop
+788ddb0b70b7,3,3 - Severe,val,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,48.9,255,False,already_tightly_framed
+e93394175a19,3,3 - Severe,train,OK,3216,2136,1.51,True,"(320, 0, 3084, 2136)",14.1,2764,2764,71.2,255,False,successful_retinal_crop
+697538183db5,3,3 - Severe,train,OK,2896,1944,1.49,True,"(424, 78, 2514, 1871)",33.4,2090,2090,46.0,255,False,successful_retinal_crop
+2b48daf24be0,3,3 - Severe,train,OK,2416,1736,1.39,True,"(77, 0, 2380, 1736)",4.7,2303,2303,88.0,255,False,successful_retinal_crop
+51da6aebba8f,3,3 - Severe,val,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,42.3,217,False,already_tightly_framed
+8c0d05233238,3,3 - Severe,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,45.2,159,False,already_tightly_framed
+7b29e3783919,3,3 - Severe,val,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,69.6,255,False,already_tightly_framed
+6061f5b7378d,3,3 - Severe,train,OK,2896,1944,1.49,True,"(422, 81, 2510, 1877)",33.4,2088,2088,54.9,255,False,successful_retinal_crop
+72595230840c,3,3 - Severe,val,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,74.0,255,False,already_tightly_framed
+9bafbbd152d2,3,3 - Severe,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,46.3,255,False,already_tightly_framed
+4c60b10a3a6a,3,3 - Severe,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,42.4,255,False,already_tightly_framed
+e76a9cbb2a8c,3,3 - Severe,val,OK,1504,1000,1.5,True,"(110, 0, 1393, 1000)",14.7,1283,1283,43.1,255,False,successful_retinal_crop
+a14fcf84bfe1,3,3 - Severe,val,OK,3216,2136,1.51,True,"(323, 0, 3089, 2136)",14.0,2766,2766,80.4,255,False,successful_retinal_crop
+3c78bfca247b,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(169, 0, 3250, 2550)",10.4,3081,3081,67.6,255,False,successful_retinal_crop
+cd93a472e5cd,4,4 - Proliferative DR,train,OK,1050,1050,1.0,False,"(0, 0, 1050, 1050)",0.0,1050,1050,60.9,255,False,already_tightly_framed
+f58d37d48e42,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(162, 0, 3244, 2559)",10.1,3082,3082,52.1,255,False,successful_retinal_crop
+d2901144070c,4,4 - Proliferative DR,train,OK,2416,1736,1.39,True,"(87, 0, 2388, 1736)",4.8,2301,2301,64.8,248,False,successful_retinal_crop
+e4f12411fd85,4,4 - Proliferative DR,train,OK,2896,1944,1.49,True,"(422, 76, 2510, 1864)",33.7,2088,2088,32.4,218,False,successful_retinal_crop
+a3fcf42ff56d,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(163, 0, 3245, 2538)",10.8,3082,3082,55.4,255,False,successful_retinal_crop
+c1896142a20a,4,4 - Proliferative DR,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,62.2,237,False,already_tightly_framed
+d9ba044671e1,4,4 - Proliferative DR,train,OK,3216,2136,1.51,True,"(327, 0, 3090, 2136)",14.1,2763,2763,64.0,255,False,successful_retinal_crop
+63b4d030b016,4,4 - Proliferative DR,val,OK,2416,1736,1.39,True,"(93, 0, 2395, 1736)",4.7,2302,2302,57.0,255,False,successful_retinal_crop
+55eb405ec71e,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(159, 0, 3244, 2560)",9.9,3085,3085,64.8,255,False,successful_retinal_crop
+ee1ec90b980f,4,4 - Proliferative DR,val,OK,2416,1736,1.39,True,"(85, 0, 2386, 1736)",4.8,2301,2301,67.1,255,False,successful_retinal_crop
+df84e7113003,4,4 - Proliferative DR,train,OK,3216,2136,1.51,True,"(331, 0, 3094, 2136)",14.1,2763,2763,66.2,255,False,successful_retinal_crop
+ed3a0fc5b546,4,4 - Proliferative DR,train,OK,2416,1736,1.39,True,"(86, 0, 2387, 1736)",4.8,2301,2301,60.6,214,False,successful_retinal_crop
+b87f9c59748b,4,4 - Proliferative DR,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,81.7,255,False,already_tightly_framed
+b90bc89ce8d8,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(151, 0, 3232, 2536)",10.9,3081,3081,46.2,228,False,successful_retinal_crop
+a182b5b191de,4,4 - Proliferative DR,train,OK,3216,2136,1.51,True,"(332, 0, 3099, 2136)",14.0,2767,2767,80.1,255,False,successful_retinal_crop
+51af8c112682,4,4 - Proliferative DR,train,OK,2588,1958,1.32,False,"(0, 0, 2588, 1958)",0.0,2588,1958,70.2,255,False,already_tightly_framed
+66375b3c64db,4,4 - Proliferative DR,train,OK,3388,2588,1.31,True,"(164, 0, 3244, 2552)",10.4,3080,3080,56.3,255,False,successful_retinal_crop
+f03d3c4ce7fb,4,4 - Proliferative DR,val,OK,3216,2136,1.51,True,"(334, 0, 3095, 2136)",14.1,2761,2761,54.1,255,False,successful_retinal_crop
+247e98aba610,4,4 - Proliferative DR,train,OK,2416,1736,1.39,True,"(88, 0, 2386, 1736)",4.9,2298,2298,47.4,163,False,successful_retinal_crop

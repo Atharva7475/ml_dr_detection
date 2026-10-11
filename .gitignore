@@ -6,8 +6,10 @@ checkpoints/
 *.h5
 *.onnx
 
-# Data & Datasets
-data/
+# Data & Datasets (keep heavy images and processed data off git)
+src/data/raw/
+src/data/processed/
+/data/
 
 # Python Cache & Notebook Checkpoints
 __pycache__/

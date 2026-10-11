@@ -1,6 +1,7 @@
-# Deep Learning Core
+# Deep Learning Core & Architectures
 torch
 torchvision
+timm
 
 # Data Processing & Numerical Computing
 numpy
@@ -22,3 +23,4 @@ seaborn
 # Utilities & Configuration
 tqdm
 PyYAML
+psutil

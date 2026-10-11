@@ -100,3 +100,88 @@ def print_model_summary(model: nn.Module) -> None:
           f"out={classifier_linear.out_features})")
     print(f"  Output Classes:        {classifier_linear.out_features}")
     print("=" * 60)
+
+
+def freeze_backbone(model: nn.Module) -> None:
+    """
+    Freeze all parameters in the EfficientNet-B0 feature-extraction backbone.
+    """
+    if hasattr(model, "features"):
+        for param in model.features.parameters():
+            param.requires_grad = False
+
+
+def unfreeze_backbone(model: nn.Module) -> None:
+    """
+    Unfreeze all parameters in the EfficientNet-B0 feature-extraction backbone
+    for full fine-tuning.
+    """
+    if hasattr(model, "features"):
+        for param in model.features.parameters():
+            param.requires_grad = True
+
+
+def freeze_batchnorm_layers(model: nn.Module) -> None:
+    """
+    Set all BatchNorm layers in the backbone to evaluation mode to prevent
+    their running statistics (mean, variance) from updating during head warmup.
+    """
+    if hasattr(model, "features"):
+        for m in model.features.modules():
+            if isinstance(m, nn.modules.batchnorm._BatchNorm):
+                m.eval()
+
+
+def get_parameter_groups(
+    model: nn.Module,
+    backbone_lr: float = 1e-5,
+    head_lr: float = 1e-4,
+    weight_decay: float = 1e-4,
+) -> list:
+    """
+    Construct separate parameter groups for Stage 2 full fine-tuning.
+    Ensures every intended trainable parameter is assigned to exactly one group.
+
+    Args:
+        model (nn.Module): EfficientNet-B0 model.
+        backbone_lr (float): Learning rate for the backbone features (default: 1e-5).
+        head_lr (float): Learning rate for the classification head (default: 1e-4).
+        weight_decay (float): L2 regularization weight decay (default: 1e-4).
+
+    Returns:
+        list[dict]: List containing two parameter group dictionaries for AdamW.
+    """
+    backbone_params = [p for p in model.features.parameters() if p.requires_grad]
+    head_params = [p for p in model.classifier.parameters() if p.requires_grad]
+
+    # Integrity assertions: disjoint sets and complete coverage
+    backbone_ids = set(id(p) for p in backbone_params)
+    head_ids = set(id(p) for p in head_params)
+
+    assert backbone_ids.isdisjoint(head_ids), (
+        "Parameter overlap detected between backbone and classification head!"
+    )
+
+    all_trainable_ids = set(id(p) for p in model.parameters() if p.requires_grad)
+    combined_ids = backbone_ids.union(head_ids)
+
+    assert combined_ids == all_trainable_ids, (
+        f"Trainable parameter mismatch: expected {len(all_trainable_ids)} total trainable parameters, "
+        f"got {len(combined_ids)} across groups."
+    )
+
+    return [
+        {
+            "name": "backbone",
+            "params": backbone_params,
+            "lr": backbone_lr,
+            "weight_decay": weight_decay,
+        },
+        {
+            "name": "head",
+            "params": head_params,
+            "lr": head_lr,
+            "weight_decay": weight_decay,
+        },
+    ]
+
