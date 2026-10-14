@@ -11,11 +11,13 @@ src/data/raw/
 src/data/processed/
 /data/
 
-# Python Cache & Notebook Checkpoints
+# Python Cache & Virtual Environments
 __pycache__/
 *.pyc
 *.pyo
 .ipynb_checkpoints/
+.venv/
+
 
 # Flutter App Build Artifacts & Local Caches
 retina_ai/build/

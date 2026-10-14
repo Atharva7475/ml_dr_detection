@@ -1,0 +1,12 @@
+# .gitattributes configuration for Jupyter Notebooks
+# Place this at the root of your Git repository
+
+# 1. Automatic output stripping on git commit (requires 'nbstripout install')
+*.ipynb filter=nbstripout
+
+# 2. Semantic diffing and merging with nbdime
+*.ipynb diff=jupyternotebook
+*.ipynb merge=jupyternotebook
+
+# 3. Optional: treat notebook diffs as text instead of binary
+*.ipynb -text

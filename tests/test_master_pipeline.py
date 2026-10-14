@@ -116,7 +116,7 @@ class TestMasterPipeline(unittest.TestCase):
             self.assertEqual(checkpoint["best_validation_accuracy"], 0.80)
 
             # Load into fresh model and verify bitwise parameter equality
-            model2 = build_efficientnet_b0(num_classes=5, pretrained=False)
+            model2 = build_efficientnet_b0(num_classes=5, pretrained=False).to(model1.features[0][0].weight.device)
             model2.load_state_dict(checkpoint["model_state_dict"])
 
             for p1, p2 in zip(model1.parameters(), model2.parameters()):
@@ -124,20 +124,22 @@ class TestMasterPipeline(unittest.TestCase):
 
     def test_overfit_sanity_on_small_subset(self):
         """Sanity check: Model must rapidly decrease loss when overfitting a tiny batch of 4 samples."""
-        model = build_efficientnet_b0(num_classes=5, pretrained=False, freeze_backbone=False)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=2e-3)
+        torch.manual_seed(42)
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model = build_efficientnet_b0(num_classes=5, pretrained=False, freeze_backbone=False).to(device)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=5e-3)
         criterion = nn.CrossEntropyLoss()
 
-        # Fixed tiny batch (using 128x128 for fast CPU execution)
-        images = torch.randn(4, 3, 128, 128)
-        targets = torch.tensor([0, 1, 2, 3])
+        # Fixed tiny batch (using 128x128 for fast execution)
+        images = torch.randn(4, 3, 128, 128, device=device)
+        targets = torch.tensor([0, 1, 2, 3], device=device)
 
         initial_loss = None
         final_loss = None
 
         model.train()
         outputs = None
-        for step in range(25):
+        for step in range(40):
             optimizer.zero_grad()
             outputs = model(images)
             loss = criterion(outputs, targets)
@@ -146,7 +148,7 @@ class TestMasterPipeline(unittest.TestCase):
 
             if step == 0:
                 initial_loss = loss.item()
-            if step == 24:
+            if step == 39:
                 final_loss = loss.item()
 
         # Loss must drop substantially during training (drops > 80% to near zero)

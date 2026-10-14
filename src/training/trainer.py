@@ -181,6 +181,7 @@ class Trainer:
         stage_name: str = "stage1",
         freeze_bn: bool = False,
         use_amp: bool = True,
+        monitor_metric: str = "val_loss",
         model_config: Optional[dict] = None,
         class_names: Optional[List[str]] = None,
     ) -> None:
@@ -205,6 +206,7 @@ class Trainer:
         self.early_stopping_patience = early_stopping_patience
         self.stage_name = stage_name
         self.freeze_bn = freeze_bn
+        self.monitor_metric = monitor_metric.lower()
         self.model_config = model_config or {}
         self.class_names = class_names or [
             "0 - No DR", "1 - Mild", "2 - Moderate", "3 - Severe", "4 - Proliferative DR"
@@ -228,6 +230,9 @@ class Trainer:
         self.history = TrainingHistory()
         self.best_val_loss = float("inf")
         self.best_val_accuracy = 0.0
+        self.best_val_loss_at_best_epoch = float("inf")
+        self.best_val_acc_at_best_epoch = 0.0
+        self.best_epoch = 0
         self.best_model_state = None
         self.epochs_without_improvement = 0
 
@@ -347,14 +352,18 @@ class Trainer:
             "model_state_dict": self.model.state_dict(),
             "optimizer_state_dict": self.optimizer.state_dict(),
             "scheduler_state_dict": self.scheduler.state_dict() if self.scheduler is not None else None,
+            "monitor_metric": self.monitor_metric,
             "best_validation_loss": val_loss,
             "best_validation_accuracy": val_acc,
+            "val_loss": val_loss,
+            "val_accuracy": val_acc,
             "class_names": self.class_names,
             "class_to_idx": {name: idx for idx, name in enumerate(self.class_names)},
             "model_config": self.model_config,
             "training_config": {
                 "num_epochs": self.num_epochs,
                 "early_stopping_patience": self.early_stopping_patience,
+                "monitor_metric": self.monitor_metric,
                 "learning_rates": {
                     pg.get("name", f"group_{i}"): pg["lr"]
                     for i, pg in enumerate(self.optimizer.param_groups)
@@ -380,13 +389,20 @@ class Trainer:
             checkpoint = torch.load(checkpoint_path, map_location=self.device, weights_only=False)
             state_dict = checkpoint.get("model_state_dict", checkpoint)
             self.model.load_state_dict(state_dict)
-            val_loss = checkpoint.get("best_validation_loss", self.best_val_loss)
-            epoch_info = checkpoint.get("epoch", "unknown")
+            val_loss = checkpoint.get("best_validation_loss", checkpoint.get("val_loss", self.best_val_loss_at_best_epoch))
+            val_acc = checkpoint.get("best_validation_accuracy", checkpoint.get("val_accuracy", self.best_val_acc_at_best_epoch))
+            epoch_info = checkpoint.get("epoch", self.best_epoch or "unknown")
+            mon_metric = checkpoint.get("monitor_metric", self.monitor_metric)
+            target_metric_val = val_acc if mon_metric == "val_acc" else val_loss
             print(f"  Restored best model from {self.checkpoint_filename} (epoch {epoch_info}, "
-                  f"val_loss={val_loss:.4f})")
+                  f"monitored on {mon_metric}={target_metric_val:.4f} | val_loss={val_loss:.4f}, val_acc={val_acc:.4f})")
         elif self.best_model_state is not None:
             self.model.load_state_dict(self.best_model_state)
-            print("  Restored best model from in-memory state.")
+            val_loss = self.best_val_loss_at_best_epoch
+            val_acc = self.best_val_acc_at_best_epoch
+            target_metric_val = val_acc if self.monitor_metric == "val_acc" else val_loss
+            print(f"  Restored best model from in-memory state (epoch {self.best_epoch}, "
+                  f"monitored on {self.monitor_metric}={target_metric_val:.4f} | val_loss={val_loss:.4f}, val_acc={val_acc:.4f})")
         else:
             print("  WARNING: No best model checkpoint found. Using final epoch weights.")
 
@@ -514,16 +530,31 @@ class Trainer:
             )
 
             # --- Checkpointing (best model) ---
-            if val_loss < self.best_val_loss:
+            if self.monitor_metric == "val_acc":
+                improved = val_acc > self.best_val_accuracy
+                improvement = val_acc - self.best_val_accuracy
+                metric_label = "val_acc"
+                current_metric = val_acc
+            else:
+                improved = val_loss < self.best_val_loss
                 improvement = self.best_val_loss - val_loss
-                self.best_val_loss = val_loss
-                self.best_val_accuracy = val_acc
+                metric_label = "val_loss"
+                current_metric = val_loss
+
+            if improved:
+                if self.monitor_metric == "val_acc":
+                    self.best_val_accuracy = val_acc
+                else:
+                    self.best_val_loss = val_loss
+                self.best_val_loss_at_best_epoch = val_loss
+                self.best_val_acc_at_best_epoch = val_acc
+                self.best_epoch = epoch + 1
                 self.best_model_state = copy.deepcopy(self.model.state_dict())
                 ckpt_path = self._save_checkpoint(epoch, val_loss, val_acc)
                 self.epochs_without_improvement = 0
                 print(
                     f"         -> New best {self.stage_name} model saved! "
-                    f"(val_loss improved by {improvement:.4f}) -> {ckpt_path}"
+                    f"({metric_label} improved by {improvement:.4f} to {current_metric:.4f}) -> {ckpt_path}"
                 )
             else:
                 self.epochs_without_improvement += 1
@@ -535,7 +566,7 @@ class Trainer:
             ):
                 print(
                     f"\n  Early stopping triggered after {self.early_stopping_patience} "
-                    f"consecutive epochs without validation loss improvement."
+                    f"consecutive epochs without {self.monitor_metric} improvement."
                 )
                 break
 
@@ -548,8 +579,10 @@ class Trainer:
         print("=" * 65)
         print(f"  Total Epochs Run:    {total_epochs}")
         print(f"  Total Time:          {total_time:.1f}s ({total_time / 60:.1f} min)")
-        print(f"  Best Val Loss:       {self.best_val_loss:.4f}")
-        print(f"  Best Val Accuracy:   {max(self.history.val_accuracy):.4f}")
+        print(f"  Best Epoch:          {self.best_epoch}")
+        print(f"  Best Val Loss (min): {min(self.history.val_loss):.4f}")
+        print(f"  Best Val Acc (max):  {max(self.history.val_accuracy):.4f}")
+        print(f"  Restored Model Stat: Val Loss={self.best_val_loss_at_best_epoch:.4f}, Val Acc={self.best_val_acc_at_best_epoch:.4f} (monitored on {self.monitor_metric})")
         # Restore the best model weights for this stage
         self._load_best_checkpoint()
 

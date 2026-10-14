@@ -24,3 +24,9 @@ seaborn
 tqdm
 PyYAML
 psutil
+
+# Jupyter & Interactive Environment
+ipykernel
+ipywidgets
+nbformat
+

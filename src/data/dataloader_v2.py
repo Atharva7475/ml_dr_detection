@@ -115,15 +115,33 @@ def get_crop_dataloaders(
     if pin_memory is None:
         pin_memory = torch.cuda.is_available()
 
+    # Auto-detect preprocessed cached images directory if available
+    # Note: images_384 in processed cache contains both Retinal Cropping AND Ben Graham normalization.
+    # Therefore, it should ONLY be used when both do_crop and use_ben_graham are requested.
+    proc_candidate = os.path.join(os.path.dirname(img_dir), "..", "processed", f"images_{img_size}")
+    if (
+        os.path.isdir(proc_candidate)
+        and len(os.listdir(proc_candidate)) > 0
+        and do_crop
+        and use_ben_graham
+    ):
+        active_img_dir = proc_candidate
+        active_do_crop = False
+        active_use_bg = False
+    else:
+        active_img_dir = img_dir
+        active_do_crop = do_crop
+        active_use_bg = use_ben_graham
+
     # Build torchvision pipelines
     train_transforms = get_crop_train_transforms(
         img_size=img_size,
-        do_crop=do_crop,
+        do_crop=active_do_crop,
         preserve_aspect_ratio=preserve_aspect_ratio,
         interpolation=interpolation,
         crop_tolerance=crop_tolerance,
         crop_pad_percent=crop_pad_percent,
-        use_ben_graham=use_ben_graham,
+        use_ben_graham=active_use_bg,
         ben_graham_sigma=ben_graham_sigma,
         ben_graham_sigma_ratio=ben_graham_sigma_ratio,
         ben_graham_mask_background=ben_graham_mask_background,
@@ -131,20 +149,20 @@ def get_crop_dataloaders(
 
     val_transforms = get_crop_val_transforms(
         img_size=img_size,
-        do_crop=do_crop,
+        do_crop=active_do_crop,
         preserve_aspect_ratio=preserve_aspect_ratio,
         interpolation=interpolation,
         crop_tolerance=crop_tolerance,
         crop_pad_percent=crop_pad_percent,
-        use_ben_graham=use_ben_graham,
+        use_ben_graham=active_use_bg,
         ben_graham_sigma=ben_graham_sigma,
         ben_graham_sigma_ratio=ben_graham_sigma_ratio,
         ben_graham_mask_background=ben_graham_mask_background,
     )
 
-    train_dataset = APTOSDataset(csv_path=train_csv, img_dir=img_dir, transform=train_transforms)
-    val_dataset = APTOSDataset(csv_path=val_csv, img_dir=img_dir, transform=val_transforms)
-    test_dataset = APTOSDataset(csv_path=test_csv, img_dir=img_dir, transform=val_transforms)
+    train_dataset = APTOSDataset(csv_path=train_csv, img_dir=active_img_dir, transform=train_transforms)
+    val_dataset = APTOSDataset(csv_path=val_csv, img_dir=active_img_dir, transform=val_transforms)
+    test_dataset = APTOSDataset(csv_path=test_csv, img_dir=active_img_dir, transform=val_transforms)
 
     # Handle train loader sampling strategy
     if use_balanced_sampler:

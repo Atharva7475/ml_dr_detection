@@ -1,0 +1,8 @@
+Status,Experiment ID,Pipeline Configuration,Resolution,Accuracy (%),Macro F1,QWK,Severe DR Recall
+COMPLETED,Baseline,Frozen B0 (Baseline),224x224,73.59%,0.5610,0.7995,34.5%
+COMPLETED,Step 1,Two-Stage 224px,224x224,78.69%,0.5679,0.8176,34.5%
+QUEUED (Awaiting GPU),E0,baseline_224,224x224,Pending,Pending,Pending,Pending
+QUEUED (Awaiting GPU),E1,cropped_384,384x384,Pending,Pending,Pending,Pending
+QUEUED (Awaiting GPU),E2,cropped_384_ben_graham,384x384,Pending,Pending,Pending,Pending
+QUEUED (Awaiting GPU),E3,cropped_384_bg_balanced_sampler,384x384,Pending,Pending,Pending,Pending
+QUEUED (Awaiting GPU),E4,cropped_384_bg_focal_loss,384x384,Pending,Pending,Pending,Pending
