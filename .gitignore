@@ -17,6 +17,10 @@ __pycache__/
 *.pyo
 .ipynb_checkpoints/
 .venv/
+.venv-gpu/
+.venv*/
+venv/
+env/
 
 
 # Flutter App Build Artifacts & Local Caches
