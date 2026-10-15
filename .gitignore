@@ -1,38 +1,126 @@
-# Large Model Checkpoints (keep on Google Drive)
+# ==============================================================================
+# RetinaAI / Diabetic Retinopathy Project .gitignore
+# Excludes heavy datasets, model checkpoints, virtual environments, build artifacts,
+# temporary caches, and system files. Keeps the GitHub repository lightweight & clean.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Model Checkpoints & Pretrained Weights (Heavy Binaries: Keep on Cloud/Drive)
+# ------------------------------------------------------------------------------
+**/checkpoints/
 checkpoints/
 *.pth
 *.pt
 *.bin
 *.h5
+*.hdf5
 *.onnx
+*.ckpt
+*.safetensors
+*.tflite
+*.pb
+*.pkl
+*.pickle
+*.weights
 
-# Data & Datasets (keep heavy images and processed data off git)
+# ------------------------------------------------------------------------------
+# 2. Datasets & Heavy Image Pools (Keep Large Imagery Off Git)
+# ------------------------------------------------------------------------------
 src/data/raw/
 src/data/processed/
-/data/
+data/
+dataset/
+datasets/
+raw_data/
+processed_data/
+*.tar
+*.tar.gz
+*.gz
+*.zip
+*.7z
+*.rar
 
-# Python Cache & Virtual Environments
+# ------------------------------------------------------------------------------
+# 3. Python Cache, Bytecode & Virtual Environments
+# ------------------------------------------------------------------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 *.pyo
-.ipynb_checkpoints/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual Environments
 .venv/
-.venv-gpu/
 .venv*/
 venv/
+venv*/
 env/
+env*/
+ENV/
+conda-env/
 
+# ------------------------------------------------------------------------------
+# 4. Jupyter Notebook Checkpoints & Temp Files
+# ------------------------------------------------------------------------------
+.ipynb_checkpoints/
+*-checkpoint.ipynb
 
-# Flutter App Build Artifacts & Local Caches
+# ------------------------------------------------------------------------------
+# 5. Logging, Scratch Files & Temporary Artifacts
+# ------------------------------------------------------------------------------
+*.log
+logs/
+scratch/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ------------------------------------------------------------------------------
+# 6. IDE, Code Editor & Operating System Files
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# 7. Flutter / Mobile App Build Artifacts & Local Ephemeral Caches
+# ------------------------------------------------------------------------------
 retina_ai/build/
 retina_ai/.dart_tool/
 retina_ai/.idea/
+retina_ai/*.iml
+retina_ai/.packages
+retina_ai/.flutter-plugins
+retina_ai/.flutter-plugins-dependencies
+
+# Flutter Android
 retina_ai/android/.gradle/
 retina_ai/android/app/build/
+retina_ai/android/local.properties
+retina_ai/android/*.iml
+
+# Flutter iOS
 retina_ai/ios/Pods/
 retina_ai/ios/.symlinks/
+retina_ai/ios/Flutter/Generated.xcconfig
+retina_ai/ios/Flutter/app.framework
+retina_ai/ios/Flutter/Flutter.framework
+retina_ai/ios/Flutter/Flutter.podspec
 
-# Zip Archives & Temp Files
-*.zip
-desktop.ini
-.DS_Store
+# Flutter Desktop (Windows / Linux / macOS)
+retina_ai/windows/flutter/ephemeral/
+retina_ai/linux/flutter/ephemeral/
+retina_ai/macos/Flutter/ephemeral/
